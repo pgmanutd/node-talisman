@@ -29,12 +29,16 @@ export const CHECKSUMS = {
     '0a5275d0a5d2ea65d96b8c929c3d351e304baf9cf1e2332ec8e2d6d83aed84ec',
 };
 
-export const PATHS = {
-  BINARY: path.resolve(path.dirname(new URL(import.meta.url).pathname), 'bin'),
-};
-
 export const META_INFO = {
   version: process.env.TALISMAN_VERSION || 'v0.4.6',
+};
+
+export const PATHS = {
+  BINARY: path.resolve(
+    path.dirname(new URL(import.meta.url).pathname),
+    'bin',
+    META_INFO.version,
+  ),
 };
 
 export const PLATFORMS = {

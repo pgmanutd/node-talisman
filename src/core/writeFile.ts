@@ -1,5 +1,7 @@
 import fs from 'fs';
 
+import mkdirp from 'mkdirp';
+
 import messages from '../messages';
 import { CONSOLE_COLORS } from '../constants';
 import {
@@ -22,7 +24,7 @@ const writeFile: ({
   return new Promise((resolve, reject) => {
     try {
       if (!doesFileExists(fileBasePath)) {
-        fs.mkdirSync(fileBasePath);
+        mkdirp.sync(fileBasePath);
       }
 
       fs.writeFileSync(filePath, data);

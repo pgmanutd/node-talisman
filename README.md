@@ -1,6 +1,6 @@
 # node-talisman &middot; [![npm](https://img.shields.io/npm/v/node-talisman.svg)](https://www.npmjs.com/package/node-talisman) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-A npm package for running Thoughtwork's [Talisman](https://github.com/thoughtworks/talisman) tool as a CLI
+A npm package for running Thoughtwork's [Talisman](https://github.com/thoughtworks/talisman) tool as a CLI.
 
 ## Requires
 
@@ -8,7 +8,7 @@ A npm package for running Thoughtwork's [Talisman](https://github.com/thoughtwor
 
 ## Features
 
-- Linux, MacOS and Windows supported
+- Linux, MacOS and Windows supported.
 
 ## Installation
 
@@ -32,33 +32,25 @@ A npm package for running Thoughtwork's [Talisman](https://github.com/thoughtwor
 
 3. Use it as you like :wink:
 
-    - Using above script:
+   **Using above script:**
 
    ```sh
    npm run node-talisman -- --githook [pre-commit|pre-push]
-   ```
 
-   or
-
-   ```sh
    # finds all .js and .ts files in the current directory (recursively)
    npm run node-talisman -- --pattern="./**/*.{js,ts}"
    ```
 
-   - Using npx
+   **Using npx:**
 
    ```sh
    npx node-talisman --githook [pre-commit|pre-push]
-   ```
 
-    or
-
-   ```sh
    # finds all .js and .ts files in the current directory (recursively)
    npx node-talisman --pattern="./**/*.{js,ts}"
    ```
 
-   For more details checkout [Talisman's installation as CLI](https://github.com/thoughtworks/talisman#installation-as-a-cli)
+   For more details checkout [Talisman's installation as CLI](https://github.com/thoughtworks/talisman#installation-as-a-cli).
 
 ## Contributing Guide
 

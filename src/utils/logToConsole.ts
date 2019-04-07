@@ -10,12 +10,12 @@ export const logToConsoleForDebugging = (message: DynamicObject) => {
   }
 };
 
-const logToConsole = (...args: any[]) => {
-  if (!args || args.length === 0) {
+const logToConsole = (...args: [{ color: string }?, string?]) => {
+  if (args.length < 2) {
     return clogy.log();
   }
 
-  const [{ color }, message] = args;
+  const [{ color = CONSOLE_COLORS.white } = {}, message] = args;
 
   return clogy.log(
     `${CONSOLE_COLORS.white} ${color}`,
