@@ -1,4 +1,4 @@
-# node-talisman &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+# node-talisman &middot; [![npm](https://img.shields.io/npm/v/node-talisman.svg)](https://www.npmjs.com/package/node-talisman) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 A npm package for running Thoughtwork's [Talisman](https://github.com/thoughtworks/talisman) tool as a CLI
 
