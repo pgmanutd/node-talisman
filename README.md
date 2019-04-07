@@ -32,15 +32,30 @@ A npm package for running Thoughtwork's [Talisman](https://github.com/thoughtwor
 
 3. Use it as you like :wink:
 
+    - Using above script:
+
    ```sh
-   npm run node-talisman --githook [pre-commit|pre-push]
+   npm run node-talisman -- --githook [pre-commit|pre-push]
    ```
 
    or
 
    ```sh
    # finds all .js and .ts files in the current directory (recursively)
-   npm run node-talisman --pattern="./**/*.{js,ts}"
+   npm run node-talisman -- --pattern="./**/*.{js,ts}"
+   ```
+
+   - Using npx
+
+   ```sh
+   npx node-talisman --githook [pre-commit|pre-push]
+   ```
+
+    or
+
+   ```sh
+   # finds all .js and .ts files in the current directory (recursively)
+   npx node-talisman --pattern="./**/*.{js,ts}"
    ```
 
    For more details checkout [Talisman's installation as CLI](https://github.com/thoughtworks/talisman#installation-as-a-cli)
