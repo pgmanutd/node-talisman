@@ -58,7 +58,7 @@ export const PLATFORMS = {
 
 export const ARCHITECTURES = {
   threeEightySix: {
-    key: '386',
+    key: '32',
     name: '386',
   },
   sixtyFour: {
