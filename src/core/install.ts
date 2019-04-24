@@ -1,5 +1,6 @@
 import messages from '../messages';
-import { logToConsoleForDebugging } from '../utils';
+
+import { logToConsoleForDebugging } from '../utils/logToConsole';
 
 import download from './download';
 import verifyChecksum from './verifyChecksum';

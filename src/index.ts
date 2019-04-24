@@ -1,4 +1,4 @@
-import { runner } from './core';
+import runner from './core/runner';
 
 export default (args: NodeJS.Process['argv']) =>
   runner(args).catch((error: Error) => {

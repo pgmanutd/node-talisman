@@ -2,7 +2,8 @@ import request from 'request';
 
 import messages from '../messages';
 import { CONSOLE_COLORS } from '../constants';
-import { logToConsole, logToConsoleForDebugging } from '../utils';
+
+import logToConsole, { logToConsoleForDebugging } from '../utils/logToConsole';
 
 const download: ({
   url,

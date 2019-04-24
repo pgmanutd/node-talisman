@@ -1,5 +1,6 @@
 import os from 'os';
 
+import messages from '../messages';
 import { PLATFORMS, ARCHITECTURES } from '../constants';
 
 const getMatchedName = <T>(key: string, list: T) => {
@@ -8,7 +9,12 @@ const getMatchedName = <T>(key: string, list: T) => {
   );
 
   if (!listItemMatched) {
-    throw new ReferenceError(key);
+    throw new ReferenceError(
+      messages.keyNotPresentInList({
+        KEY: key,
+        LIST: JSON.stringify(list),
+      }),
+    );
   }
 
   return list[listItemMatched].name;

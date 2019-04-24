@@ -2,7 +2,9 @@ import execSh from 'exec-sh';
 
 import messages from '../messages';
 import { CONSOLE_COLORS } from '../constants';
-import { logToConsole, logToConsoleForDebugging, isWindows } from '../utils';
+
+import logToConsole, { logToConsoleForDebugging } from '../utils/logToConsole';
+import { isWindows } from '../utils/getOSDetails';
 
 const makeExecutable: ({
   filePath,

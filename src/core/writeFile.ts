@@ -4,11 +4,9 @@ import mkdirp from 'mkdirp';
 
 import messages from '../messages';
 import { CONSOLE_COLORS } from '../constants';
-import {
-  logToConsole,
-  logToConsoleForDebugging,
-  doesFileExists,
-} from '../utils';
+
+import logToConsole, { logToConsoleForDebugging } from '../utils/logToConsole';
+import doesFileExists from '../utils/doesFileExists';
 
 const writeFile: ({
   fileBasePath,

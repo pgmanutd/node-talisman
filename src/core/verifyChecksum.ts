@@ -2,7 +2,8 @@ import crypto from 'crypto';
 
 import messages from '../messages';
 import { CONSOLE_COLORS } from '../constants';
-import { logToConsole, logToConsoleForDebugging } from '../utils';
+
+import logToConsole, { logToConsoleForDebugging } from '../utils/logToConsole';
 
 const getChecksum = (
   data: BinaryType,

@@ -1,4 +1,6 @@
-import { createDeepProxy, replacePlaceholdersInTargetValue } from './utils';
+import createDeepProxy, {
+  replacePlaceholdersInTargetValue,
+} from './utils/createDeepProxy';
 
 const defaultLanguage = 'en';
 
@@ -28,6 +30,7 @@ const messages = {
       failed: 'Failed to write file on disk!!!!',
     },
     binary: 'binary',
+    keyNotPresentInList: '{KEY} not present in {LIST}',
   },
 };
 

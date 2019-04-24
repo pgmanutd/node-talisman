@@ -2,11 +2,9 @@ import execSh from 'exec-sh';
 
 import messages from '../messages';
 import { CONSOLE_COLORS } from '../constants';
-import {
-  logToConsole,
-  logToConsoleForDebugging,
-  getProcessArgs,
-} from '../utils';
+
+import logToConsole, { logToConsoleForDebugging } from '../utils/logToConsole';
+import getProcessArgs from '../utils/getProcessArgs';
 
 const check: ({
   filePath,
