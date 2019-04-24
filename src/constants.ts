@@ -1,5 +1,6 @@
 import path from 'path';
-import { URL } from 'url';
+
+import getDirname from './utils/getDirname';
 
 export const CONSOLE_COLORS = {
   white: '\x1b[1m\x1b[30m\x1b[47m%s\x1b[0m',
@@ -34,11 +35,7 @@ export const META_INFO = {
 };
 
 export const PATHS = {
-  BINARY: path.resolve(
-    path.dirname(new URL(import.meta.url).pathname),
-    'bin',
-    META_INFO.version,
-  ),
+  BINARY: path.resolve(getDirname(), 'bin', META_INFO.version),
 };
 
 export const PLATFORMS = {
