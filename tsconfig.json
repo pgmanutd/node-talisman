@@ -16,8 +16,6 @@
     "pretty": true,
     "allowJs": true,
     "resolveJsonModule": true,
-    "incremental": true,
-    "tsBuildInfoFile": "./.cache/.tsbuildinfo",
     "baseUrl": "./src",
     "typeRoots": ["node_modules/@types"],
     "types": ["node"]
