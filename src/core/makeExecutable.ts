@@ -5,6 +5,9 @@ import { CONSOLE_COLORS } from '../constants';
 
 import logToConsole, { logToConsoleForDebugging } from '../utils/logToConsole';
 import { isWindows } from '../utils/getOSDetails';
+import wrapTextIfNotWindows from '../utils/wrapTextIfNotWindows';
+
+const wrapTextWithQuotesIfNotWindows = wrapTextIfNotWindows(`"`);
 
 const makeExecutable: ({
   filePath,
@@ -18,25 +21,28 @@ const makeExecutable: ({
       return resolve();
     }
 
-    return execSh([`chmod +x ${filePath}`], error => {
-      if (!error) {
+    return execSh(
+      [`chmod +x ${wrapTextWithQuotesIfNotWindows(filePath)}`],
+      error => {
+        if (!error) {
+          logToConsole(
+            { color: CONSOLE_COLORS.green },
+            messages.makeExecutable.succeed.toString(),
+          );
+          logToConsole();
+
+          return resolve();
+        }
+
         logToConsole(
-          { color: CONSOLE_COLORS.green },
-          messages.makeExecutable.succeed.toString(),
+          { color: CONSOLE_COLORS.red },
+          messages.makeExecutable.failed.toString(),
         );
         logToConsole();
 
-        return resolve();
-      }
-
-      logToConsole(
-        { color: CONSOLE_COLORS.red },
-        messages.makeExecutable.failed.toString(),
-      );
-      logToConsole();
-
-      return reject(error);
-    });
+        return reject(error);
+      },
+    );
   });
 };
 
