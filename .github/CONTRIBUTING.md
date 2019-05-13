@@ -6,6 +6,7 @@ Want to contribute? Great! Check the guidelines below.
 
 - [node.js](http://nodejs.org) - evented I/O for the backend
 - [Typescript](https://www.typescriptlang.org/) - a strict syntactical superset of JavaScript, and adds optional static typing to the language
+- [Jest](https://jestjs.io/) - a testing framework
 - [ESLint](https://eslint.org/): a fully pluggable tool for identifying and reporting on patterns in JavaScript
 - [Prettier](https://prettier.io/): an opinionated code formatter
 
@@ -35,7 +36,25 @@ Run typescript typechecking:
 $ npm run typecheck
 ```
 
-Run lint and typechecking:
+Run unit tests:
+
+```bash
+$ npm test
+```
+
+Run unit tests in watch mode:
+
+```bash
+$ npm run test:watch
+```
+
+Run unit tests with coverage:
+
+```bash
+$ npm run test:coverage
+```
+
+Run lint and typechecking and tests:
 
 ```bash
 $ npm run check

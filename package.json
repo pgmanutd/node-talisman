@@ -15,10 +15,15 @@
     "publish": "pack publish",
     "lint:scripts": "eslint \"src/**/*.{js,ts}\" \"scripts/**/*.{js,ts}\" --cache --cache-location \".cache/.eslintcache/\"",
     "lint": "npm run lint:scripts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit -p ./tsconfig.typecheck.json",
+    "test": "cross-env NODE_ENV=test jest --projects ./scripts/jest --cacheDirectory \".cache/jest/\"",
+    "test:watch": "npm run test -- --watch",
+    "test:changed-only": "npm run test -- --onlyChanged",
+    "test:coverage": "npm run test -- --coverage",
+    "test:update-snapshot": "npm run test -- --updateSnapshot",
     "format": "npm run lint:scripts -- --fix",
     "format:check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
-    "check": "npm run lint && npm run typecheck"
+    "check": "npm run lint && npm run typecheck && npm run test:coverage -- --bail"
   },
   "engines": {
     "node": ">=8"
@@ -50,24 +55,28 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.5.2",
-    "@commitlint/config-conventional": "^7.5.0",
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0",
     "@pika/pack": "^0.3.7",
     "@pika/plugin-build-node": "^0.3.16",
     "@pika/plugin-build-types": "^0.3.16",
     "@pika/plugin-simple-bin": "^0.3.16",
     "@pika/plugin-standard-pkg": "^0.3.16",
+    "@types/jest": "^24.0.12",
     "@types/minimist": "^1.2.0",
     "@types/mkdirp": "^0.5.2",
-    "@types/node": "^11.13.7",
+    "@types/node": "^12.0.0",
     "@types/request": "^2.48.1",
-    "@typescript-eslint/parser": "^1.7.0",
+    "@typescript-eslint/parser": "^1.8.0",
+    "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
-    "eslint-plugin-prettier": "^3.0.1",
-    "husky": "^2.1.0",
-    "lint-staged": "^8.1.5",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.2.0",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.1.6",
     "prettier": "^1.17.0",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
   },
   "@pika/pack": {
