@@ -1,11 +1,7 @@
 import isObject from './isObject';
 
-export const replacePlaceholdersInTargetValue = (value: any) => {
+const replacePlaceholdersInTargetValue = (value: any) => {
   const replacePlaceholders = (placeholders: DynamicObject) => {
-    if (!isObject(placeholders)) {
-      return value;
-    }
-
     return Object.keys(placeholders).reduce(
       (accum, placeholder) =>
         accum.replace(
@@ -21,9 +17,11 @@ export const replacePlaceholdersInTargetValue = (value: any) => {
   return replacePlaceholders;
 };
 
-const createDeepProxy: <T extends object>(obj: T) => T = obj =>
+const createDeepProxy: <T extends DynamicObject>(
+  obj: T,
+) => DeepStringOrFunction<T, typeof replacePlaceholdersInTargetValue> = obj =>
   new Proxy(obj, {
-    get(target, prop) {
+    get(target, prop: string) {
       const value = target[prop] || prop;
 
       if (isObject(value)) {

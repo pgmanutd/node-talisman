@@ -35,7 +35,9 @@ export const META_INFO = {
 };
 
 export const PATHS = {
-  BINARY: path.resolve(getDirname(), 'bin', META_INFO.version),
+  // TODO: Replace __filename with require('url').fileURLToPath(import.meta.url);
+  // when upgraded to node 11
+  BINARY: path.resolve(getDirname(__filename), 'bin', META_INFO.version),
 };
 
 export const PLATFORMS = {

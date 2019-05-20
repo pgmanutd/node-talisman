@@ -1,19 +1,8 @@
-import crypto from 'crypto';
-
 import messages from '../messages';
 import { CONSOLE_COLORS } from '../constants';
 
 import logToConsole, { logToConsoleForDebugging } from '../utils/logToConsole';
-
-const getChecksum = (
-  data: BinaryType,
-  algorithm?: string,
-  encoding?: crypto.HexBase64Latin1Encoding,
-) =>
-  crypto
-    .createHash(algorithm || 'sha256')
-    .update(data)
-    .digest(encoding || 'hex');
+import getChecksum from '../utils/getChecksum';
 
 const verifyChecksum: ({
   data,

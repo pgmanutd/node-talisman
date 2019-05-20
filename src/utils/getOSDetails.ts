@@ -24,4 +24,4 @@ export const getPlatform = () => getMatchedName(os.platform(), PLATFORMS);
 
 export const getArchitecture = () => getMatchedName(os.arch(), ARCHITECTURES);
 
-export const isWindows = os.platform() === 'win32';
+export const isWindows = () => os.platform() === 'win32';

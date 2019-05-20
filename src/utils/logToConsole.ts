@@ -15,7 +15,10 @@ const logToConsole = (...args: [{ color: string }?, string?]) => {
     return clogy.log();
   }
 
-  const [{ color = CONSOLE_COLORS.white } = {}, message] = args;
+  const [
+    { color = CONSOLE_COLORS.white } = { color: CONSOLE_COLORS.white },
+    message,
+  ] = args;
 
   return clogy.log(
     `${CONSOLE_COLORS.white} ${color}`,

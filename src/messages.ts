@@ -1,6 +1,4 @@
-import createDeepProxy, {
-  replacePlaceholdersInTargetValue,
-} from './utils/createDeepProxy';
+import createDeepProxy from './utils/createDeepProxy';
 
 const defaultLanguage = 'en';
 
@@ -34,12 +32,7 @@ const messages = {
   },
 };
 
-export default createDeepProxy<
-  DeepStringOrFunction<
-    typeof messages[typeof defaultLanguage],
-    typeof replacePlaceholdersInTargetValue
-  >
->(
+export default createDeepProxy<typeof messages[typeof defaultLanguage]>(
   messages[process.env.TALISMAN_LANGUAGE || defaultLanguage] ||
     messages[defaultLanguage],
 );

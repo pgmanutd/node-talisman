@@ -9,7 +9,7 @@ import install from './install';
 import check from './check';
 
 const fileName = `talisman_${getPlatform()}_${getArchitecture()}${
-  isWindows ? '.exe' : ''
+  isWindows() ? '.exe' : ''
 }`;
 const url = `https://github.com/thoughtworks/talisman/releases/download/${
   META_INFO.version

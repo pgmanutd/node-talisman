@@ -17,7 +17,7 @@ const makeExecutable: ({
   logToConsoleForDebugging({ filePath });
 
   return new Promise((resolve, reject) => {
-    if (isWindows) {
+    if (isWindows()) {
       return resolve();
     }
 
