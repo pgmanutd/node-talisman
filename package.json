@@ -62,20 +62,20 @@
     "@pika/plugin-build-types": "^0.3.16",
     "@pika/plugin-simple-bin": "^0.3.16",
     "@pika/plugin-standard-pkg": "^0.3.16",
-    "@types/jest": "^24.0.12",
+    "@types/jest": "^24.0.13",
     "@types/minimist": "^1.2.0",
     "@types/mkdirp": "^0.5.2",
-    "@types/node": "^12.0.0",
+    "@types/node": "^12.0.2",
     "@types/request": "^2.48.1",
-    "@typescript-eslint/parser": "^1.8.0",
+    "@typescript-eslint/parser": "^1.9.0",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.2.0",
+    "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "husky": "^2.2.0",
+    "husky": "^2.3.0",
     "jest": "^24.8.0",
-    "lint-staged": "^8.1.6",
-    "prettier": "^1.17.0",
+    "lint-staged": "^8.1.7",
+    "prettier": "^1.17.1",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
   },
@@ -87,7 +87,7 @@
       [
         "@pika/plugin-build-types",
         {
-          "tsconfig": "tsconfig.types.json"
+          "tsconfig": "tsconfig.base.json"
         }
       ],
       [

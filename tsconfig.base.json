@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "pretty": true,
+    "allowJs": false,
+    "resolveJsonModule": true,
+    "baseUrl": "./src",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node", "jest"]
+  },
+  "include": ["src/**/*", "typings/**/*"],
+  "exclude": ["node_modules", "**/*.test.ts", "**/*.mock.ts"]
+}
