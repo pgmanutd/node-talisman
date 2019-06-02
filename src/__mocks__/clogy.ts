@@ -1,6 +1,12 @@
+import clogy from 'clogy';
+
 const actualClogy = jest.requireActual('clogy');
+const mockedClogy = jest.genMockFromModule<typeof clogy>('clogy');
 
-actualClogy.trace = jest.fn();
-actualClogy.log = jest.fn();
+mockedClogy.trace = jest.fn();
+mockedClogy.log = jest.fn();
 
-export default actualClogy;
+export default {
+  ...mockedClogy,
+  LEVELS: actualClogy.LEVELS,
+};

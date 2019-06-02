@@ -1,12 +1,3 @@
-declare module 'exec-sh' {
-  const execSh: (
-    commands: string[],
-    errorCallback: (error?: Error) => void,
-  ) => void;
-
-  export default execSh;
-}
-
 interface ImportMeta {
   url: string;
 }
@@ -14,8 +5,6 @@ interface ImportMeta {
 interface DynamicObject {
   [key: string]: any;
 }
-
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 type Subtract<T extends T1, T1 extends object> = Pick<
   T,
