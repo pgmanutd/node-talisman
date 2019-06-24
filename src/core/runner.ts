@@ -11,9 +11,7 @@ import check from './check';
 const fileName = `talisman_${getPlatform()}_${getArchitecture()}${
   isWindows() ? '.exe' : ''
 }`;
-const url = `https://github.com/thoughtworks/talisman/releases/download/${
-  META_INFO.version
-}/${fileName}`;
+const url = `https://github.com/thoughtworks/talisman/releases/download/${META_INFO.version}/${fileName}`;
 const checksum = CHECKSUMS[fileName as keyof typeof CHECKSUMS];
 
 const fileBasePath = PATHS.BINARY;
