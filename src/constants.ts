@@ -9,6 +9,7 @@ export const CONSOLE_COLORS = {
   green: '\x1b[1m\x1b[37m\x1b[42m%s\x1b[0m',
 };
 
+/* eslint-disable @typescript-eslint/camelcase */
 export const CHECKSUMS = {
   talisman_linux_386:
     process.env.TALISMAN_LINUX_386_CHECKSUM ||
@@ -29,6 +30,7 @@ export const CHECKSUMS = {
     process.env.TALISMAN_WINDOWS_AMD64_CHECKSUM ||
     '0a5275d0a5d2ea65d96b8c929c3d351e304baf9cf1e2332ec8e2d6d83aed84ec',
 };
+/* eslint-enable @typescript-eslint/camelcase */
 
 export const META_INFO = {
   version: process.env.TALISMAN_VERSION || 'v0.4.6',

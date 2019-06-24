@@ -6,7 +6,7 @@ declare module 'request' {
     TOptions extends CoreOptions,
     TUriUrlOptions
   > {
-    __setResponse(...newParams: typeof params): void;
+    __setResponse(...newParams: any[]): void;
   }
 }
 
