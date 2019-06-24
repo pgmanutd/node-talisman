@@ -82,7 +82,13 @@
   "@pika/pack": {
     "pipeline": [
       [
-        "@pika/plugin-standard-pkg"
+        "@pika/plugin-standard-pkg",
+        {
+          "exclude": [
+            "__tests__/**/*",
+            "__mocks__/**/*"
+          ]
+        }
       ],
       [
         "@pika/plugin-build-types",

@@ -5,6 +5,7 @@ module.exports = {
   verbose: false,
   notify: false,
   roots: ['<rootDir>/src'],
+  testPathIgnorePatterns: ['/node_modules/', '/__tests__/.*Helpers.ts$'],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts$',
   transform: {
     '^.+\\.ts$': 'ts-jest',
@@ -22,7 +23,10 @@ module.exports = {
   moduleDirectories: ['node_modules', 'src'],
   setupFiles: ['<rootDir>/scripts/jest/throwConsoleError.js'],
   collectCoverageFrom: ['src/**/*.ts', '!**/node_modules/**'],
-  coveragePathIgnorePatterns: ['.*.(test|spec).ts?.snap?$'],
+  coveragePathIgnorePatterns: [
+    '.*.(test|spec).ts?.snap?$',
+    '/__tests__/.*Helpers.ts$',
+  ],
   coverageDirectory: '<rootDir>/reports/coverage',
   coverageThreshold: {
     global: {

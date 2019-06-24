@@ -9,11 +9,9 @@ import wrapTextIfNotWindows from '../utils/wrapTextIfNotWindows';
 
 const wrapTextWithQuotesIfNotWindows = wrapTextIfNotWindows(`"`);
 
-const makeExecutable: ({
+const makeExecutable: ({ filePath }: { filePath: string }) => Promise<void> = ({
   filePath,
-}: {
-  filePath: string;
-}) => Promise<undefined> = ({ filePath }) => {
+}) => {
   logToConsoleForDebugging({ filePath });
 
   return new Promise((resolve, reject) => {

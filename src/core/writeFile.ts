@@ -16,14 +16,12 @@ const writeFile: ({
   fileBasePath: string;
   filePath: string;
   data: BinaryType;
-}) => Promise<undefined> = ({ fileBasePath, filePath, data }) => {
+}) => Promise<void> = ({ fileBasePath, filePath, data }) => {
   logToConsoleForDebugging({ fileBasePath, filePath });
 
   return new Promise((resolve, reject) => {
     try {
-      if (!doesFileExists(fileBasePath)) {
-        mkdirp.sync(fileBasePath);
-      }
+      !doesFileExists(fileBasePath) && mkdirp.sync(fileBasePath);
 
       fs.writeFileSync(filePath, data);
 

@@ -15,7 +15,7 @@ const check: ({
 }: {
   filePath: string;
   args: NodeJS.Process['argv'];
-}) => Promise<undefined> = ({ filePath, args }) => {
+}) => Promise<void> = ({ filePath, args }) => {
   logToConsoleForDebugging({ filePath });
 
   return new Promise((resolve, reject) => {

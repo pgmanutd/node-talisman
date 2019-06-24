@@ -1,3 +1,5 @@
+import request from 'request';
+
 declare module 'request' {
   interface RequestAPI<
     TRequest extends Request,
@@ -9,11 +11,11 @@ declare module 'request' {
 }
 
 interface MockedRequest extends jest.Mock {
-  __setResponse?: (...newParams: typeof params) => void;
+  __setResponse?: typeof request['__setResponse'];
 }
 
 let params: any[];
-const __setResponse: MockedRequest['__setResponse'] = (...newParams) => {
+const __setResponse: typeof request['__setResponse'] = (...newParams) => {
   params = newParams;
 };
 
