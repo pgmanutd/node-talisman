@@ -50,7 +50,7 @@ A npm package for running Thoughtwork's [Talisman](https://github.com/thoughtwor
    npx node-talisman --pattern="./**/*.{js,ts}"
    ```
 
-   For more details checkout [Talisman's installation as CLI](https://github.com/thoughtworks/talisman#installation-as-a-cli).
+   For more details checkout [Talisman as a CLI utility](https://github.com/thoughtworks/talisman#talisman-as-a-cli-utility).
 
 ## Contributing Guide
 
