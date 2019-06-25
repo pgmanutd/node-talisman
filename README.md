@@ -65,6 +65,10 @@ Please adhere to [Code of Conduct](./.github/CODE_OF_CONDUCT.md).
 
 Please make sure to read the [Issue Reporting Guidelines](./.github/ISSUE_TEMPLATE.md) before opening an issue.
 
+## Changelog
+
+Detailed changes for each release are documented in the [release notes](https://github.com/pgmanutd/node-talisman/releases).
+
 ## License
 
 Licensed under the [MIT licensed](./LICENSE).
