@@ -1,0 +1,25 @@
+exclude:
+  - /scripts/.*
+
+component_depth: 1
+languages:
+- typescript
+- javascript
+
+- name: typescript
+  production:
+    exclude:
+      - .*/__tests__/.*\.ts
+      - .*/__mocks__/.*\.ts
+  test:
+    include:
+      - .*/__tests__/.*\.ts
+
+- name: javascript
+  production:
+    exclude:
+      - .*/__tests__/.*\.js
+      - .*/__mocks__/.*\.js
+  test:
+    include:
+      - .*/__tests__/.*\.js
