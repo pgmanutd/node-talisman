@@ -88,8 +88,8 @@
         "@pika/plugin-standard-pkg",
         {
           "exclude": [
-            "__tests__/**/*",
-            "__mocks__/**/*"
+            "**/__tests__/**/*",
+            "**/__mocks__/**/*"
           ]
         }
       ],
