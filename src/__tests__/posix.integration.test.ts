@@ -28,7 +28,7 @@ const mockedGetChecksum = getChecksum as jest.Mock;
 jest.mock('../utils/doesFileExists');
 const mockedDoesFileExists = doesFileExists as jest.Mock;
 
-describe('#unix.integration', () => {
+describe('#posix.integration', () => {
   beforeAll(() => {
     jest.useFakeTimers();
 
