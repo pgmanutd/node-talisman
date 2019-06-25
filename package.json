@@ -24,7 +24,8 @@
     "format": "npm run lint:scripts -- --fix",
     "format:check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
     "check": "npm run lint && npm run typecheck && npm run test:coverage -- --bail",
-    "coveralls": "cat ./reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./reports/coverage"
+    "coveralls": "cat ./reports/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./reports/coverage",
+    "version": "npm run build"
   },
   "engines": {
     "node": ">=8"
