@@ -1,5 +1,5 @@
 module.exports = {
-  '**/*.ts': filenames => [
+  '**/*.{js,ts}': filenames => [
     `eslint --fix ${filenames.join(' ')}`,
     `git add ${filenames.join(' ')}`,
     'tsc -p tsconfig.json --noEmit',
