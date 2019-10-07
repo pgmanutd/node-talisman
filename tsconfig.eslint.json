@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.typecheck.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": ["src/**/*", "typings/**/*", "scripts/**/*"]
+}

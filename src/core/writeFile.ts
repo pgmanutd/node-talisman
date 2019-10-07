@@ -21,7 +21,9 @@ const writeFile: ({
 
   return new Promise((resolve, reject) => {
     try {
-      !doesFileExists(fileBasePath) && mkdirp.sync(fileBasePath);
+      if (!doesFileExists(fileBasePath)) {
+        mkdirp.sync(fileBasePath);
+      }
 
       fs.writeFileSync(filePath, data);
 
