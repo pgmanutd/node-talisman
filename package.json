@@ -11,8 +11,8 @@
     }
   },
   "scripts": {
-    "build": "npm run check && pack build",
-    "publish": "pack publish",
+    "build": "npm run check && pika build",
+    "publish": "pika publish",
     "lint:scripts": "eslint \"src/**/*.{js,ts}\" \"scripts/**/*.{js,ts}\" --cache --cache-location \".cache/.eslintcache/\"",
     "lint": "npm run lint:scripts",
     "typecheck": "tsc --noEmit -p ./tsconfig.typecheck.json",
