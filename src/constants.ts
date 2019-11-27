@@ -13,27 +13,27 @@ export const CONSOLE_COLORS = {
 export const CHECKSUMS = {
   talisman_linux_386:
     process.env.TALISMAN_LINUX_386_CHECKSUM ||
-    '3769aaea3f6c80f586210f23d2649a0670389386e96fd74077f684ad8c9f6413',
+    'fdb53e0ec0ab1a0c2285015654744b1d83acbcb3ca877c5923f0825b06456085',
   talisman_linux_amd64:
     process.env.TALISMAN_LINUX_AMD64_CHECKSUM ||
-    '2da76b7785acc145063836986b42f673bddcba99703f2831cdce1768e62c6e42',
+    '4358506a05655df05fb2e8ea410146153e46cb27dc0a33b69e71a1f89e8f30aa',
   talisman_darwin_386:
     process.env.TALISMAN_DARWIN_386_CHECKSUM ||
-    'dfedf78ee7aac4895ace817b02ece30bf7a7834d977b001ce6e7be0483cd1872',
+    'af5bbfc4ee9382c1c3cf7889f272f104eac2f586ac9f4f6659841e540861ede6',
   talisman_darwin_amd64:
     process.env.TALISMAN_DARWIN_AMD64_CHECKSUM ||
-    'a1bfa411fc775129108e137e779478497d05cd52e7dd1768400641ed48c37237',
+    '10a209e5c95635de39743fc4bd0245519ba1ec16ae4bee7d0d4a03cdad92818d',
   'talisman_windows_386.exe':
     process.env.TALISMAN_WINDOWS_386_CHECKSUM ||
-    '04f1a4dcbe18673c6771ece5f4d57d46014ac9dded3c685869a4be1252b3878b',
+    'b30f9daf753d7a55482a5d7fd57f3a74ecbfdc550631ea1a70bea4aae419c5b2',
   'talisman_windows_amd64.exe':
     process.env.TALISMAN_WINDOWS_AMD64_CHECKSUM ||
-    '493e4dc1ca8a3731734641b3b4700831b93a243bf70ecf96b304a70e5f580ee5',
+    '1482532cdf6764969aa8ed6fd3f7effd391a6040a209fec1b33571c30e4ad367',
 };
 /* eslint-enable @typescript-eslint/camelcase */
 
 export const META_INFO = {
-  version: process.env.TALISMAN_VERSION || 'v1.0.0',
+  version: process.env.TALISMAN_VERSION || 'v1.1.0',
 };
 
 export const PATHS = {
