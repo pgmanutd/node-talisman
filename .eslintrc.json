@@ -28,7 +28,8 @@
     "prettier/prettier": ["warn"],
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-explicit-any": 0,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "import/extensions": 0
   },
   "overrides": [
     {
