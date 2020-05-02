@@ -28,8 +28,8 @@
     "version": "npm run build"
   },
   "engines": {
-    "node": ">=8",
-    "npm": ">=6.8.0"
+    "node": ">=12.14.x",
+    "npm": ">=6.13.x"
   },
   "repository": {
     "type": "git",
