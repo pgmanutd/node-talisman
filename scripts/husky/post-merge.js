@@ -7,7 +7,7 @@ execSh(
     'changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"',
     'echo $changed_files | grep --quiet "package-lock.json" && eval "npm install"',
   ],
-  err => {
+  (err) => {
     if (!err) {
       console.log();
 

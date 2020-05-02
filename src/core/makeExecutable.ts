@@ -21,7 +21,7 @@ const makeExecutable: ({ filePath }: { filePath: string }) => Promise<void> = ({
 
     return execSh(
       [`chmod +x ${wrapTextWithQuotesIfNotWindows(filePath)}`],
-      error => {
+      (error) => {
         if (!error) {
           logToConsole(
             { color: CONSOLE_COLORS.green },

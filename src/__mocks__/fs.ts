@@ -7,10 +7,10 @@ declare module 'fs' {
 const mockedFS = jest.genMockFromModule<typeof fs>('fs');
 
 const mockFiles = new Map();
-const __setMockFiles: typeof fs.__setMockFiles = newMockFiles => {
+const __setMockFiles: typeof fs.__setMockFiles = (newMockFiles) => {
   mockFiles.clear();
 
-  Object.keys(newMockFiles).forEach(fileName => {
+  Object.keys(newMockFiles).forEach((fileName) => {
     mockFiles.set(fileName, newMockFiles[fileName]);
   });
 };

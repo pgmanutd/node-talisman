@@ -11,7 +11,7 @@ interface MockedExecSh extends jest.Mock {
 }
 
 let error: Error | undefined;
-const __setError: typeof execSh['__setError'] = newError => {
+const __setError: typeof execSh['__setError'] = (newError) => {
   error = newError;
 };
 

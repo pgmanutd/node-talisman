@@ -4,7 +4,7 @@ import messages from '../messages';
 import { PLATFORMS, ARCHITECTURES } from '../constants';
 
 const getMatchedName = <T>(key: string, list: T) => {
-  const listItemMatched = Object.keys(list).find(listItem =>
+  const listItemMatched = Object.keys(list).find((listItem) =>
     key.includes(list[listItem].key),
   );
 

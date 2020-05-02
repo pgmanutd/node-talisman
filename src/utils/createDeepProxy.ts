@@ -19,7 +19,7 @@ const replacePlaceholdersInTargetValue = (value: any) => {
 
 const createDeepProxy: <T extends DynamicObject>(
   obj: T,
-) => DeepStringOrFunction<T, typeof replacePlaceholdersInTargetValue> = obj =>
+) => DeepStringOrFunction<T, typeof replacePlaceholdersInTargetValue> = (obj) =>
   new Proxy(obj, {
     get(target, prop: string) {
       const value = target[prop] || prop;

@@ -27,7 +27,7 @@ const check: ({
 
     execSh(
       [`${wrapTextWithQuotesIfNotWindows(filePath)} ${getProcessArgs(args)}`],
-      error => {
+      (error) => {
         if (!error) {
           logToConsole(
             { color: CONSOLE_COLORS.green },

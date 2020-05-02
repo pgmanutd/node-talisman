@@ -23,9 +23,11 @@ const install = ({
   logToConsoleForDebugging({ url, checksum, fileBasePath, fileName, filePath });
 
   return download({ url, name: messages.binary.toString() })
-    .then(data => verifyChecksum({ data, checksum }).then(() => data))
-    .then(data => writeFile({ fileBasePath, filePath, data }).then(() => data))
-    .then(data => makeExecutable({ filePath }).then(() => data));
+    .then((data) => verifyChecksum({ data, checksum }).then(() => data))
+    .then((data) =>
+      writeFile({ fileBasePath, filePath, data }).then(() => data),
+    )
+    .then((data) => makeExecutable({ filePath }).then(() => data));
 };
 
 export default install;

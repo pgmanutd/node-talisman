@@ -8,7 +8,7 @@ declare module 'os' {
 const mockedOS = jest.genMockFromModule<typeof os>('os');
 
 let platform: NodeJS.Platform;
-const __setPlatform: typeof os.__setPlatform = newPlatform => {
+const __setPlatform: typeof os.__setPlatform = (newPlatform) => {
   platform = newPlatform;
 };
 
@@ -16,7 +16,7 @@ mockedOS.__setPlatform = __setPlatform;
 mockedOS.platform = jest.fn(() => platform);
 
 let arch: string;
-const __setArch: typeof os.__setArch = newArch => {
+const __setArch: typeof os.__setArch = (newArch) => {
   arch = newArch;
 };
 
