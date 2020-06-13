@@ -4,7 +4,7 @@ A npm package for running Thoughtwork's [Talisman](https://github.com/thoughtwor
 
 ## Requires
 
-- Node 8+
+- Node 12+
 
 ## Features
 

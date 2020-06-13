@@ -26,18 +26,17 @@
   ],
   "rules": {
     "prettier/prettier": ["warn"],
-    "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "no-underscore-dangle": 0,
-    "import/extensions": 0
+    "import/extensions": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0
   },
   "overrides": [
     {
-      "files": [
-        "src/**/*.integration.test.{ts,tsx}"
-      ],
+      "files": ["src/**/*.integration.test.{ts,tsx}"],
       "rules": {
-        "global-require": 0
+        "global-require": 0,
+        "@typescript-eslint/no-var-requires": 0
       }
     }
   ]

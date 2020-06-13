@@ -9,7 +9,6 @@ export const CONSOLE_COLORS = {
   green: '\x1b[1m\x1b[37m\x1b[42m%s\x1b[0m',
 };
 
-/* eslint-disable @typescript-eslint/camelcase */
 export const CHECKSUMS = {
   talisman_linux_386:
     process.env.TALISMAN_LINUX_386_CHECKSUM ||
@@ -30,7 +29,6 @@ export const CHECKSUMS = {
     process.env.TALISMAN_WINDOWS_AMD64_CHECKSUM ||
     '93dc5bf3c85431e0eb0fd5371c0b6fc5ac433afe8a9aa1a266ce0fffa806c42f',
 };
-/* eslint-enable @typescript-eslint/camelcase */
 
 export const META_INFO = {
   version: process.env.TALISMAN_VERSION || 'v1.2.0',
@@ -38,7 +36,7 @@ export const META_INFO = {
 
 export const PATHS = {
   // TODO: Replace __filename with require('url').fileURLToPath(import.meta.url);
-  // when upgraded to node 11
+  // Need some investigation here. Not working out of box.
   BINARY: path.resolve(getDirname(__filename), 'bin', META_INFO.version),
 };
 
