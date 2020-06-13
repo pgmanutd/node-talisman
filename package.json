@@ -106,7 +106,7 @@
       [
         "@pika/plugin-build-node",
         {
-          "minNodeVersion": "8"
+          "minNodeVersion": "12"
         }
       ],
       [
