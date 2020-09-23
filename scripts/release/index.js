@@ -9,7 +9,7 @@ const pkg = require('../../package.json');
 const pkgVersion = pkg.version;
 
 const publishNewTag = async ({ newVersion }) => {
-  await execShPromise(`npm run publish -- ${newVersion} --preview`, {
+  await execShPromise(`npm run publish -- ${newVersion} --no-release-draft`, {
     cwd: process.cwd(),
   });
 };
