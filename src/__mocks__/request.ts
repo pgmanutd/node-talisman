@@ -1,3 +1,5 @@
+// TODO: Please fix this rule
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import request from 'request';
 
 declare module 'request' {
