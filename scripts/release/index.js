@@ -1,12 +1,16 @@
 /* eslint-disable no-console, @typescript-eslint/no-var-requires, import/no-extraneous-dependencies */
 
+require('ts-node').register();
+
+const fs = require('fs');
+
 const request = require('request');
 const execShPromise = require('exec-sh').promise;
 const replace = require('replace-in-file');
 
-const pkg = require('../../package.json');
+const { META_INFO } = require('../../src/constants');
 
-const pkgVersion = pkg.version;
+const oldVersion = META_INFO.version.replace('v', '');
 
 const publishNewTag = async ({ newVersion }) => {
   await execShPromise(`npm run publish -- ${newVersion} --no-release-draft`, {
@@ -18,7 +22,7 @@ const commitChanges = async ({ newVersion }) => {
   await execShPromise(
     [
       'git add --all',
-      `git commit -m "build(tw-talisman): upgrade from ${pkgVersion} to ${newVersion}" -n`,
+      `git commit -m "build(tw-talisman): upgrade from ${oldVersion} to ${newVersion}" -n`,
     ],
     { cwd: process.cwd() },
   );
@@ -26,11 +30,21 @@ const commitChanges = async ({ newVersion }) => {
 
 const replaceChecksumsInFiles = async ({ checksums }) => {
   const stringifiedChecksums = JSON.stringify(checksums);
+  const cwd = process.cwd();
+  const file = 'src/constants.ts';
+
+  const originalStats = fs.statSync(`${cwd}/${file}`);
 
   await execShPromise(
-    `npx jscodeshift --parser=ts --extensions=ts --transform scripts/release/transform.js src/constants.ts --checksums='${stringifiedChecksums}'`,
+    `npx jscodeshift --parser=ts --extensions=ts --transform scripts/release/transform.js ${file} --checksums='${stringifiedChecksums}'`,
     { cwd: process.cwd() },
   );
+
+  const newStats = fs.statSync(`${cwd}/${file}`);
+
+  if (originalStats.mtimeMs === newStats.mtimeMs) {
+    throw new Error('Failed to replace checksum');
+  }
 };
 
 const replaceVersionsInFiles = ({ tagName }) => {
@@ -39,7 +53,7 @@ const replaceVersionsInFiles = ({ tagName }) => {
   try {
     const changedFiles = replace.sync({
       files: [`${cwd}/README.md`, `${cwd}/src/constants.ts`],
-      from: new RegExp(`v${pkgVersion}`, 'g'),
+      from: new RegExp(`v${oldVersion}`, 'g'),
       to: tagName,
     });
 
@@ -97,7 +111,7 @@ const getNextTagName = () => {
       (error, { body, statusCode }) => {
         if (!error && statusCode === 200) {
           const index = body.findIndex(({ tag_name: tagName }) =>
-            tagName.includes(pkgVersion),
+            tagName.includes(oldVersion),
           );
 
           if (index === 0) {
@@ -139,9 +153,9 @@ const getNextTagName = () => {
         ],
       });
 
-      replaceVersionsInFiles({ tagName });
-
       await replaceChecksumsInFiles({ checksums });
+
+      replaceVersionsInFiles({ tagName });
 
       await commitChanges({ newVersion });
 
