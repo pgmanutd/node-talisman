@@ -3,7 +3,7 @@ name: Publish
 on:
   schedule:
     # Every day at midnight
-    - cron: '35 16 * * *'
+    - cron: '45 16 * * *'
 
 jobs:
   build:
@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: |
+        run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-      - with:
+        with:
           # for triggering another workflow
           # https://stackoverflow.com/questions/60418323/triggering-a-new-workflow-from-another-workflow
           # https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
