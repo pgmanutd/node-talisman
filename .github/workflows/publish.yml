@@ -16,14 +16,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
         with:
           # for triggering another workflow
           # https://stackoverflow.com/questions/60418323/triggering-a-new-workflow-from-another-workflow
           # https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
