@@ -1,0 +1,45 @@
+name: Publish
+
+on:
+  schedule:
+    # Every day at midnight
+    - cron: '10 21 * * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish new version
+        run: node scripts/release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_TALISMAN_NPM_TOKEN }}
