@@ -3,7 +3,7 @@ name: Publish
 on:
   schedule:
     # Every day at midnight
-    - cron: '10 21 * * *'
+    - cron: '47 15 * * *'
 
 jobs:
   build:
