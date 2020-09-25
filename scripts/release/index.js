@@ -8,7 +8,7 @@ const request = require('request');
 const execShPromise = require('exec-sh').promise;
 const replace = require('replace-in-file');
 
-const { META_INFO } = require('../../src/constants');
+const { CHECKSUMS, META_INFO } = require('../../src/constants');
 
 const oldVersion = META_INFO.version.replace('v', '');
 
@@ -143,14 +143,7 @@ const getNextTagName = () => {
       const checksumFileContent = await getChecksumFileContent({ tagName });
       const checksums = extractChecksumsFromContent({
         content: checksumFileContent,
-        checksumNames: [
-          'talisman_linux_386',
-          'talisman_linux_amd64',
-          'talisman_darwin_386',
-          'talisman_darwin_amd64',
-          'talisman_windows_386.exe',
-          'talisman_windows_amd64.exe',
-        ],
+        checksumNames: Object.keys(CHECKSUMS),
       });
 
       await replaceChecksumsInFiles({ checksums });
