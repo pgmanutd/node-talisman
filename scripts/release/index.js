@@ -137,7 +137,7 @@ const getNextTagName = () => {
   try {
     const tagName = await getNextTagName();
 
-    if (tagName) {
+    if (tagName && tagName.startsWith('v')) {
       const newVersion = tagName.replace('v', '');
 
       const checksumFileContent = await getChecksumFileContent({ tagName });
