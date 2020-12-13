@@ -98,6 +98,35 @@ const getChecksumFileContent = ({ tagName }) => {
   });
 };
 
+const getNextValidTagName = (body) => {
+  const index = body.findIndex(({ tag_name: tagName }) =>
+    tagName.includes(oldVersion),
+  );
+
+  let nextValidTag = null;
+
+  if (index <= 0) {
+    return nextValidTag;
+  }
+
+  for (let i = index - 1; i >= 0; i -= 1) {
+    const nextTag = body[i];
+
+    if (
+      nextTag &&
+      !nextTag.draft &&
+      !nextTag.prerelease &&
+      nextTag.tag_name.startsWith('v')
+    ) {
+      nextValidTag = nextTag;
+
+      break;
+    }
+  }
+
+  return nextValidTag && nextValidTag.tag_name;
+};
+
 const getNextTagName = () => {
   return new Promise((resolve, reject) => {
     request(
@@ -110,21 +139,7 @@ const getNextTagName = () => {
       },
       (error, { body, statusCode }) => {
         if (!error && statusCode === 200) {
-          const index = body.findIndex(({ tag_name: tagName }) =>
-            tagName.includes(oldVersion),
-          );
-
-          if (index === 0) {
-            return resolve();
-          }
-
-          const nextRelease = body[index - 1];
-
-          if (nextRelease.draft || nextRelease.prerelease) {
-            return resolve();
-          }
-
-          return resolve(nextRelease.tag_name);
+          return resolve(getNextValidTagName(body));
         }
 
         return reject(error);
@@ -137,7 +152,7 @@ const getNextTagName = () => {
   try {
     const tagName = await getNextTagName();
 
-    if (tagName && tagName.startsWith('v')) {
+    if (tagName) {
       const newVersion = tagName.replace('v', '');
 
       const checksumFileContent = await getChecksumFileContent({ tagName });
