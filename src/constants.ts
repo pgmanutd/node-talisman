@@ -21,6 +21,7 @@ export const CHECKSUMS = {
   talisman_darwin_amd64:
     process.env.TALISMAN_DARWIN_AMD64_CHECKSUM ||
     '85dc35cfb406a101408a2b3cca373e0f613fad79f3667919e81771961410c420',
+  talisman_darwin_arm64: process.env.TALISMAN_DARWIN_ARM64_CHECKSUM || '',
   'talisman_windows_386.exe':
     process.env.TALISMAN_WINDOWS_386_CHECKSUM ||
     '1da9c3813a7105f4d23d7d4e96ab847b348e810f1793e6d35f890c8fd726662d',
