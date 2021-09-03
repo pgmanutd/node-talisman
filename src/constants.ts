@@ -21,7 +21,9 @@ export const CHECKSUMS = {
   talisman_darwin_amd64:
     process.env.TALISMAN_DARWIN_AMD64_CHECKSUM ||
     'c7f428aaa8756c7bc162d8255ad2e52b33c2816759415725b0397bbcafde153d',
-  talisman_darwin_arm64: process.env.TALISMAN_DARWIN_ARM64_CHECKSUM || 'f6dc1e3dd26dca96f0e790950cf5984180fe0495671c2cf3cb202e5160dde51b',
+  talisman_darwin_arm64:
+    process.env.TALISMAN_DARWIN_ARM64_CHECKSUM ||
+    'f6dc1e3dd26dca96f0e790950cf5984180fe0495671c2cf3cb202e5160dde51b',
   'talisman_windows_386.exe':
     process.env.TALISMAN_WINDOWS_386_CHECKSUM ||
     'f3b5c99146580934476ed901b99070ae72777f4d44ac12a67e150dc9462eefbe',
@@ -31,7 +33,7 @@ export const CHECKSUMS = {
 };
 
 export const META_INFO = {
-  version: process.env.TALISMAN_VERSION || 'v1.22.0',
+  version: process.env.TALISMAN_VERSION || 'v1.11.0',
 };
 
 export const PATHS = {
