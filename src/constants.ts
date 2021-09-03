@@ -12,24 +12,24 @@ export const CONSOLE_COLORS = {
 export const CHECKSUMS = {
   talisman_linux_386:
     process.env.TALISMAN_LINUX_386_CHECKSUM ||
-    '9f001726030c7c1caaae370ee614724bae38672e7538e5d0a87ef1a711359462',
+    '71090510f1f89b17c927e2a450b39cab0caef097510c9e8c24c28dc32cf25659',
   talisman_linux_amd64:
     process.env.TALISMAN_LINUX_AMD64_CHECKSUM ||
-    '0258871ccadf5f4d4c35100f1fecc01595a3bd904182ac9d0dbe5d8aa6b3e414',
+    '8fbab0ab3dbbb1f64ba2b0040f2b4ef10e66eb0e2553c4fd80c3ba65063736ab',
   // NOTE: Checksum for darwin_386 not present in original checksum file.
   talisman_darwin_386: process.env.TALISMAN_DARWIN_386_CHECKSUM || '',
   talisman_darwin_amd64:
     process.env.TALISMAN_DARWIN_AMD64_CHECKSUM ||
-    'c7f428aaa8756c7bc162d8255ad2e52b33c2816759415725b0397bbcafde153d',
+    '85dc35cfb406a101408a2b3cca373e0f613fad79f3667919e81771961410c420',
   talisman_darwin_arm64:
     process.env.TALISMAN_DARWIN_ARM64_CHECKSUM ||
     'f6dc1e3dd26dca96f0e790950cf5984180fe0495671c2cf3cb202e5160dde51b',
   'talisman_windows_386.exe':
     process.env.TALISMAN_WINDOWS_386_CHECKSUM ||
-    'f3b5c99146580934476ed901b99070ae72777f4d44ac12a67e150dc9462eefbe',
+    '1da9c3813a7105f4d23d7d4e96ab847b348e810f1793e6d35f890c8fd726662d',
   'talisman_windows_amd64.exe':
     process.env.TALISMAN_WINDOWS_AMD64_CHECKSUM ||
-    'f6eeeb5af98f5234d6f37635e1c6c0b60526f6358b6aa2870480e4a37d56370f',
+    'e64486428ea019f99fae775bae83834b984dacc53fa1740f3570909782448c79',
 };
 
 export const META_INFO = {
