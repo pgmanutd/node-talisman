@@ -1,6 +1,6 @@
 {
   "name": "node-talisman",
-  "version": "1.25.0",
+  "version": "1.26.0",
   "description": "A npm package for running Thoughtwork's Talisman tool",
   "main": "./src/index.ts",
   "typesVersions": {
