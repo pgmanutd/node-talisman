@@ -16,6 +16,7 @@ export const CHECKSUMS = {
   talisman_linux_amd64:
     process.env.TALISMAN_LINUX_AMD64_CHECKSUM ||
     '8d31647fd79f706e03997db5490984c7cfcf8c9374502cb916b2ebed74e29642',
+  talisman_linux_arm64: process.env.TALISMAN_LINUX_ARM64_CHECKSUM || '',
   // NOTE: Checksum for darwin_386 not present in original checksum file.
   talisman_darwin_386: process.env.TALISMAN_DARWIN_386_CHECKSUM || '',
   talisman_darwin_amd64:
@@ -30,6 +31,7 @@ export const CHECKSUMS = {
   'talisman_windows_amd64.exe':
     process.env.TALISMAN_WINDOWS_AMD64_CHECKSUM ||
     'cdc8bfb0ecdbc63d620a18ab39bca650751ca1e3a5ddb6db490a631defa54cdf',
+  'talisman_windows_arm64.exe': process.env.TALISMAN_WINDOWS_ARM64_CHECKSUM || '',
 };
 
 export const META_INFO = {
