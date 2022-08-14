@@ -67,7 +67,7 @@ const extractChecksumsFromContent = ({ content, checksumNames }) => {
   return checksumNames.reduce((accum, checksumName) => {
     const groupKey = checksumName.replace('.', '_');
     const matchedValue = content.match(
-      `(?<${groupKey}>.*) [*]${checksumName}[\n\r]*`,
+      `(?<${groupKey}>.*) ${checksumName}[\n\r]*`,
     );
 
     if (!matchedValue) {
