@@ -7,22 +7,30 @@ const fs = require('fs');
 const request = require('request');
 const execShPromise = require('exec-sh').promise;
 const replace = require('replace-in-file');
+const semver = require('semver');
 
+const packageJson = require('../../package.json');
 const { CHECKSUMS, META_INFO } = require('../../src/constants');
 
-const oldVersion = META_INFO.version.replace('v', '');
+const oldTWTalismanVersion = META_INFO.version.replace('v', '');
+const { version: oldNodeTalismanVersion } = packageJson;
 
-const publishNewTag = async ({ newVersion }) => {
-  await execShPromise(`npm run publish -- ${newVersion} --no-release-draft`, {
-    cwd: process.cwd(),
-  });
+const publishNewTag = async () => {
+  const newNodeTalismanVersion = semver.inc(oldNodeTalismanVersion, 'patch');
+
+  await execShPromise(
+    `npm run publish -- ${newNodeTalismanVersion} --no-release-draft`,
+    {
+      cwd: process.cwd(),
+    },
+  );
 };
 
-const commitChanges = async ({ newVersion }) => {
+const commitChanges = async ({ newTWTalismanVersion }) => {
   await execShPromise(
     [
       'git add --all',
-      `git commit -m "build(tw-talisman): upgrade from ${oldVersion} to ${newVersion}" -n`,
+      `git commit -m "build(tw-talisman): upgrade from ${oldTWTalismanVersion} to ${newTWTalismanVersion}" -n`,
     ],
     { cwd: process.cwd() },
   );
@@ -47,14 +55,14 @@ const replaceChecksumsInFiles = async ({ checksums }) => {
   }
 };
 
-const replaceVersionsInFiles = ({ tagName }) => {
+const replaceVersionsInFiles = ({ newTWTalismanVersion }) => {
   const cwd = process.cwd();
 
   try {
     const changedFiles = replace.sync({
       files: [`${cwd}/README.md`, `${cwd}/src/constants.ts`],
-      from: new RegExp(`v${oldVersion}`, 'g'),
-      to: tagName,
+      from: new RegExp(`v${oldTWTalismanVersion}`, 'g'),
+      to: `v${newTWTalismanVersion}`,
     });
 
     console.log('Modified files after replacing versions:', changedFiles);
@@ -100,7 +108,7 @@ const getChecksumFileContent = ({ tagName }) => {
 
 const getNextValidTagName = (body) => {
   const index = body.findIndex(({ tag_name: tagName }) =>
-    tagName.includes(oldVersion),
+    tagName.includes(oldTWTalismanVersion),
   );
 
   let nextValidTag = null;
@@ -153,7 +161,7 @@ const getNextTagName = () => {
     const tagName = await getNextTagName();
 
     if (tagName) {
-      const newVersion = tagName.replace('v', '');
+      const newTWTalismanVersion = tagName.replace('v', '');
 
       const checksumFileContent = await getChecksumFileContent({ tagName });
       const checksums = extractChecksumsFromContent({
@@ -163,11 +171,11 @@ const getNextTagName = () => {
 
       await replaceChecksumsInFiles({ checksums });
 
-      replaceVersionsInFiles({ tagName });
+      replaceVersionsInFiles({ newTWTalismanVersion });
 
-      await commitChanges({ newVersion });
+      await commitChanges({ newTWTalismanVersion });
 
-      await publishNewTag({ newVersion });
+      await publishNewTag();
     }
   } catch (error) {
     setImmediate(() => {
