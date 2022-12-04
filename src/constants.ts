@@ -12,34 +12,34 @@ export const CONSOLE_COLORS = {
 export const CHECKSUMS = {
   talisman_linux_386:
     process.env.TALISMAN_LINUX_386_CHECKSUM ||
-    'd548f80b85b56ce45ca7ca9dc9dc73c7c79d585e98fb47210a4662f6dc147cd9',
+    'db739bbb6288a2fedacabd91600fc75f3d6c2d6ce71142835489bed7133c22d8',
   talisman_linux_amd64:
     process.env.TALISMAN_LINUX_AMD64_CHECKSUM ||
-    'c8321973ebf3ba0c8772fc2579293330c588d241f424e9d1f07d63ea4e3052a7',
+    'fcabbeab135b603ec89a80d6c7bbc1d1c6d0200233db95c4020bd25e1d5128c3',
   talisman_linux_arm64:
     process.env.TALISMAN_LINUX_ARM64_CHECKSUM ||
-    'c0be330a960824ce6ffd7fed01842b6f174266d7828b0d19a4bc1a88362537ca',
+    '8596cb788b5882ee8e4b9b3c946652819d8b4470ea4169cc7b740fe867b9b736',
   // NOTE: Checksum for darwin_386 not present in original checksum file.
   talisman_darwin_386: process.env.TALISMAN_DARWIN_386_CHECKSUM || '',
   talisman_darwin_amd64:
     process.env.TALISMAN_DARWIN_AMD64_CHECKSUM ||
-    '18795db0afb77a1d5f1576465ea313b5ec8ab2be3ebb3da8397be000ca07607c',
+    'a7a1c3c7875c20a26e48a5864611a2d78ca25e6c1406fbb3d809fb0694afdb1c',
   talisman_darwin_arm64:
     process.env.TALISMAN_DARWIN_ARM64_CHECKSUM ||
-    'cfd384deba71a30d6649f9bba04bda16f5678ddb0b46ac0d44a296a1fe9fea93',
+    'cd46fb353f60a39d17b287bccb4c800d51e5616415771c6f712278ac2eab6e6a',
   'talisman_windows_386.exe':
     process.env.TALISMAN_WINDOWS_386_CHECKSUM ||
-    '6f7c69c3b909aab089c426a8baad9cb76c561281be09caa66a0bb095efc63510',
+    'b524d5f1f7cb8c5517fff01a7c07e2011dffc99974f92ad34ce0c8140b0eb14d',
   'talisman_windows_amd64.exe':
     process.env.TALISMAN_WINDOWS_AMD64_CHECKSUM ||
-    'cbe67c3f2c85606bf251f66557f49641bc5c4c4aaa49dd8f9eea991874877094',
+    'cacc26833310ebbb741f9ca17075d86ac82d86e2badafe7beb029e2940d894eb',
   'talisman_windows_arm64.exe':
     process.env.TALISMAN_WINDOWS_ARM64_CHECKSUM ||
-    '1b2aada0b26fc24ad901b13ac30e3b18881a60d68f6f046048af41f2de8cb574',
+    '78afaf293355199e3841c2f02cb08bc253c052cd9625df9e478732ca3304234c',
 };
 
 export const META_INFO = {
-  version: process.env.TALISMAN_VERSION || 'v1.29.2',
+  version: process.env.TALISMAN_VERSION || 'v1.29.3',
 };
 
 export const PATHS = {
