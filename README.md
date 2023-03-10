@@ -8,7 +8,7 @@ A npm package for running Thoughtwork's [Talisman](https://github.com/thoughtwor
 
 ## Features
 
-- Supports [Talisman v1.30.0](https://github.com/thoughtworks/talisman/releases/tag/v1.30.0).
+- Supports [Talisman v1.30.1](https://github.com/thoughtworks/talisman/releases/tag/v1.30.1).
 - Linux, MacOS and Windows supported.
 
 ## Installation
