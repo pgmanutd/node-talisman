@@ -178,6 +178,8 @@ const getNextTagName = () => {
       await publishNewTag();
     }
   } catch (error) {
+    console.error('Error during release process:', error);
+
     setImmediate(() => {
       throw error;
     });
