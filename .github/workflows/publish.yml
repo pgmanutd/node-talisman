@@ -4,6 +4,14 @@ on:
   schedule:
     # Every day at midnight
     - cron: '0 0 * * *'
+  # Manual release of node-talisman itself (independent of Talisman upgrades),
+  # e.g. after a dependency or internal change.
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (leave blank to auto patch-bump)'
+        required: false
+        default: ''
 
 jobs:
   build:
@@ -45,7 +53,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Publish new version
+      # Scheduled run: bump only when Thoughtworks ships a new Talisman release.
+      - name: Publish new version (scheduled Talisman upgrade)
+        if: github.event_name == 'schedule'
         run: node scripts/release --trace-uncaught
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_TALISMAN_NPM_TOKEN }}
+
+      # Manual run: publish the current code with an explicit or patch-bumped version.
+      - name: Publish new version (manual)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          if [ -z "$VERSION" ]; then
+            VERSION=$(node -p "require('semver').inc(require('./package.json').version, 'patch')")
+          fi
+          echo "Publishing node-talisman $VERSION"
+          npm run publish -- "$VERSION" --no-release-draft
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_TALISMAN_NPM_TOKEN }}
