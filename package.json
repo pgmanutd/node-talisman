@@ -11,7 +11,8 @@
     }
   },
   "scripts": {
-    "build": "npm run check && pika build",
+    "start": "cross-env NODE_ENV=development ts-node -e \"import nodeTalisman from \\\"./src/index\\\"; nodeTalisman([])\"",
+    "build": "pika build",
     "publish": "pika publish",
     "lint:scripts": "eslint \"src/**/*.{js,ts}\" \"scripts/**/*.{js,ts}\" --cache --cache-location \".cache/.eslintcache/\"",
     "lint": "npm run lint:scripts",
@@ -53,8 +54,7 @@
   "dependencies": {
     "clogy": "^1.3.3",
     "exec-sh": "^0.3.4",
-    "mkdirp": "^1.0.4",
-    "request": "^2.88.2"
+    "mkdirp": "^1.0.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -67,7 +67,6 @@
     "@types/jest": "^26.0.14",
     "@types/mkdirp": "^1.0.1",
     "@types/node": "^14.11.2",
-    "@types/request": "^2.48.5",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "coveralls": "^3.1.0",

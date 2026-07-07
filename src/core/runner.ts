@@ -4,6 +4,7 @@ import { CHECKSUMS, PATHS, META_INFO } from '../constants';
 
 import { isWindows, getPlatform, getArchitecture } from '../utils/getOSDetails';
 import doesFileExists from '../utils/doesFileExists';
+import isDevEnv from '../utils/isDevEnv';
 
 import install from './install';
 import check from './check';
@@ -23,7 +24,7 @@ const runner = (args: NodeJS.Process['argv']) => {
   }
 
   return install({ url, checksum, fileBasePath, fileName, filePath }).then(() =>
-    check({ filePath, args }),
+    isDevEnv() ? Promise.resolve() : check({ filePath, args }),
   );
 };
 

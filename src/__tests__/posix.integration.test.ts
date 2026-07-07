@@ -1,9 +1,9 @@
 import os from 'os';
 import fs from 'fs';
-import request from 'request';
 import execSh from 'exec-sh';
 import clogy from 'clogy';
 
+import get from '../utils/get';
 import getChecksum from '../utils/getChecksum';
 import doesFileExists from '../utils/doesFileExists';
 
@@ -27,6 +27,9 @@ const mockedGetChecksum = getChecksum as jest.Mock;
 
 jest.mock('../utils/doesFileExists');
 const mockedDoesFileExists = doesFileExists as jest.Mock;
+
+jest.mock('../utils/get');
+const mockedGet = get as jest.Mock;
 
 describe('#posix.integration', () => {
   beforeAll(() => {
@@ -54,8 +57,10 @@ describe('#posix.integration', () => {
 
         const { responseFailedStatusCode } = setup();
 
-        request.__setResponse(responseError, {
-          statusCode: responseFailedStatusCode,
+        mockedGet.mockImplementationOnce((_, cb) => {
+          cb(responseError, {
+            statusCode: responseFailedStatusCode,
+          });
         });
       });
 
@@ -75,8 +80,10 @@ describe('#posix.integration', () => {
 
         const { checksum, responseSuccessStatusCode } = setup();
 
-        request.__setResponse(undefined, {
-          statusCode: responseSuccessStatusCode,
+        mockedGet.mockImplementationOnce((_, cb) => {
+          cb(undefined, {
+            statusCode: responseSuccessStatusCode,
+          });
         });
         mockedGetChecksum.mockReturnValue(checksum);
         execSh.__setError(undefined);
@@ -103,8 +110,10 @@ describe('#posix.integration', () => {
 
         const { responseFailedStatusCode } = setup();
 
-        request.__setResponse(undefined, {
-          statusCode: responseFailedStatusCode,
+        mockedGet.mockImplementationOnce((_, cb) => {
+          cb(undefined, {
+            statusCode: responseFailedStatusCode,
+          });
         });
 
         return require('../index').default([]);
@@ -143,8 +152,10 @@ describe('#posix.integration', () => {
 
         const { responseSuccessStatusCode } = setup();
 
-        request.__setResponse(undefined, {
-          statusCode: responseSuccessStatusCode,
+        mockedGet.mockImplementationOnce((_, cb) => {
+          cb(undefined, {
+            statusCode: responseSuccessStatusCode,
+          });
         });
         mockedGetChecksum.mockReturnValue('23456');
 
@@ -175,8 +186,10 @@ describe('#posix.integration', () => {
 
         const { checksum, responseSuccessStatusCode } = setup();
 
-        request.__setResponse(undefined, {
-          statusCode: responseSuccessStatusCode,
+        mockedGet.mockImplementationOnce((_, cb) => {
+          cb(undefined, {
+            statusCode: responseSuccessStatusCode,
+          });
         });
         mockedGetChecksum.mockReturnValue(checksum);
         (fs.writeFileSync as jest.Mock).mockImplementationOnce(() => {
@@ -212,8 +225,10 @@ describe('#posix.integration', () => {
 
         const { checksum, responseSuccessStatusCode } = setup();
 
-        request.__setResponse(undefined, {
-          statusCode: responseSuccessStatusCode,
+        mockedGet.mockImplementationOnce((_, cb) => {
+          cb(undefined, {
+            statusCode: responseSuccessStatusCode,
+          });
         });
         mockedGetChecksum.mockReturnValue(checksum);
         execSh.__setError(new Error('chmod'));
@@ -251,8 +266,10 @@ describe('#posix.integration', () => {
 
         const { checksum, responseSuccessStatusCode } = setup();
 
-        request.__setResponse(undefined, {
-          statusCode: responseSuccessStatusCode,
+        mockedGet.mockImplementationOnce((_, cb) => {
+          cb(undefined, {
+            statusCode: responseSuccessStatusCode,
+          });
         });
         mockedGetChecksum.mockReturnValue(checksum);
         execSh.__setError(new Error(inputArgs[2]));
@@ -307,8 +324,10 @@ describe('#posix.integration', () => {
 
         const { checksum, responseSuccessStatusCode } = setup();
 
-        request.__setResponse(undefined, {
-          statusCode: responseSuccessStatusCode,
+        mockedGet.mockImplementationOnce((_, cb) => {
+          cb(undefined, {
+            statusCode: responseSuccessStatusCode,
+          });
         });
         mockedGetChecksum.mockReturnValue(checksum);
         execSh.__setError(undefined);

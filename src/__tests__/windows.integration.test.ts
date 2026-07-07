@@ -1,7 +1,7 @@
 import os from 'os';
-import request from 'request';
 import execSh from 'exec-sh';
 
+import get from '../utils/get';
 import getChecksum from '../utils/getChecksum';
 
 import {
@@ -19,6 +19,9 @@ jest.mock('path');
 
 jest.mock('../utils/getChecksum');
 const mockedGetChecksum = getChecksum as jest.Mock;
+
+jest.mock('../utils/get');
+const mockedGet = get as jest.Mock;
 
 describe('#windows.integration', () => {
   beforeAll(() => {
@@ -39,8 +42,10 @@ describe('#windows.integration', () => {
 
       const { checksum, responseSuccessStatusCode } = setup();
 
-      request.__setResponse(undefined, {
-        statusCode: responseSuccessStatusCode,
+      mockedGet.mockImplementationOnce((_, cb) => {
+        cb(undefined, {
+          statusCode: responseSuccessStatusCode,
+        });
       });
       mockedGetChecksum.mockReturnValue(checksum);
       execSh.__setError(undefined);

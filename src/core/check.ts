@@ -25,7 +25,7 @@ const check: ({
     );
     logToConsole();
 
-    execSh(
+    return execSh(
       [`${wrapTextWithQuotesIfNotWindows(filePath)} ${getProcessArgs(args)}`],
       (error) => {
         if (!error) {

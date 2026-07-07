@@ -1,6 +1,7 @@
 import messages from '../messages';
 
 import { logToConsoleForDebugging } from '../utils/logToConsole';
+import isDevEnv from '../utils/isDevEnv';
 
 import download from './download';
 import verifyChecksum from './verifyChecksum';
@@ -25,9 +26,13 @@ const install = ({
   return download({ url, name: messages.binary.toString() })
     .then((data) => verifyChecksum({ data, checksum }).then(() => data))
     .then((data) =>
-      writeFile({ fileBasePath, filePath, data }).then(() => data),
+      isDevEnv()
+        ? data
+        : writeFile({ fileBasePath, filePath, data }).then(() => data),
     )
-    .then((data) => makeExecutable({ filePath }).then(() => data));
+    .then((data) =>
+      isDevEnv() ? data : makeExecutable({ filePath }).then(() => data),
+    );
 };
 
 export default install;

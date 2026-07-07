@@ -1,9 +1,8 @@
-import request from 'request';
-
 import messages from '../messages';
 import { CONSOLE_COLORS } from '../constants';
 
 import logToConsole, { logToConsoleForDebugging } from '../utils/logToConsole';
+import get from '../utils/get';
 
 const download: ({
   url,
@@ -21,31 +20,25 @@ const download: ({
     );
     logToConsole();
 
-    request(
-      {
-        url,
-        encoding: null,
-      },
-      (error, response, data) => {
-        if (!error && response.statusCode === 200) {
-          logToConsole(
-            { color: CONSOLE_COLORS.green },
-            messages.download.succeed({ NAME: name }),
-          );
-          logToConsole();
-
-          return resolve(data);
-        }
-
+    get({ url, encoding: null }, (error, response, data) => {
+      if (!error && response?.statusCode === 200) {
         logToConsole(
-          { color: CONSOLE_COLORS.red },
-          messages.download.failed({ NAME: name }),
+          { color: CONSOLE_COLORS.green },
+          messages.download.succeed({ NAME: name }),
         );
         logToConsole();
 
-        return reject(error);
-      },
-    );
+        return resolve(data);
+      }
+
+      logToConsole(
+        { color: CONSOLE_COLORS.red },
+        messages.download.failed({ NAME: name }),
+      );
+      logToConsole();
+
+      return reject(error);
+    });
   });
 };
 
