@@ -3,8 +3,8 @@
 require('ts-node').register();
 
 const fs = require('fs');
+const https = require('https');
 
-const request = require('request');
 const execShPromise = require('exec-sh').promise;
 const replace = require('replace-in-file');
 const semver = require('semver');
@@ -89,21 +89,47 @@ const extractChecksumsFromContent = ({ content, checksumNames }) => {
   }, {});
 };
 
-const getChecksumFileContent = ({ tagName }) => {
+// Minimal native https GET that follows redirects (GitHub release asset
+// downloads 302 to storage) and optionally parses the body as JSON. Replaces
+// the deprecated `request` package (see issue #31).
+const httpsGet = ({ url, headers = {}, json = false }) => {
   return new Promise((resolve, reject) => {
-    request(
-      {
-        url: `https://github.com/thoughtworks/talisman/releases/download/${tagName}/checksums`,
-      },
-      (error, response, data) => {
-        if (!error && response.statusCode === 200) {
-          return resolve(data);
-        }
+    const clientRequest = https.get(url, { headers }, (response) => {
+      const { statusCode, headers: responseHeaders } = response;
 
-        return reject(error);
-      },
-    );
+      if (statusCode >= 300 && statusCode < 400 && responseHeaders.location) {
+        response.resume();
+
+        return resolve(
+          httpsGet({ url: responseHeaders.location, headers, json }),
+        );
+      }
+
+      const chunks = [];
+
+      response.on('data', (chunk) => chunks.push(chunk));
+
+      return response.on('end', () => {
+        const data = Buffer.concat(chunks).toString('utf8');
+
+        resolve({ statusCode, body: json ? JSON.parse(data) : data });
+      });
+    });
+
+    clientRequest.on('error', reject);
   });
+};
+
+const getChecksumFileContent = async ({ tagName }) => {
+  const { statusCode, body } = await httpsGet({
+    url: `https://github.com/thoughtworks/talisman/releases/download/${tagName}/checksums`,
+  });
+
+  if (statusCode !== 200) {
+    throw new Error(`Failed to download checksums (status ${statusCode})`);
+  }
+
+  return body;
 };
 
 const getNextValidTagName = (body) => {
@@ -135,25 +161,20 @@ const getNextValidTagName = (body) => {
   return nextValidTag && nextValidTag.tag_name;
 };
 
-const getNextTagName = () => {
-  return new Promise((resolve, reject) => {
-    request(
-      {
-        uri: 'https://api.github.com/repos/thoughtworks/talisman/releases',
-        headers: {
-          'User-Agent': 'talisman',
-        },
-        json: true,
-      },
-      (error, { body, statusCode }) => {
-        if (!error && statusCode === 200) {
-          return resolve(getNextValidTagName(body));
-        }
-
-        return reject(error);
-      },
-    );
+const getNextTagName = async () => {
+  const { statusCode, body } = await httpsGet({
+    url: 'https://api.github.com/repos/thoughtworks/talisman/releases',
+    headers: {
+      'User-Agent': 'talisman',
+    },
+    json: true,
   });
+
+  if (statusCode !== 200) {
+    throw new Error(`Failed to fetch releases (status ${statusCode})`);
+  }
+
+  return getNextValidTagName(body);
 };
 
 (async () => {
